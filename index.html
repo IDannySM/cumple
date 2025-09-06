@@ -114,8 +114,79 @@
 
   <!-- Primer minijuego -->
   <div id="game">
-    <h2>🎈 Revienta 5 globos para continuar 🎈</h2>
+    <h2 id="title">🎈 Revienta 5 globos para continuar 🎈</h2>
   </div>
+<!-- Pantalla del chiste comunista -->
+<div id="secret" style="display:none; font-size:2em; text-align:center; color:white; text-shadow:2px 2px 6px black; animation: fadeIn 1s ease;">
+  <p>🤔 Oye... ¿por qué siempre la izquierda?</p>
+  <p>💣 No serás tú comunista, ¿no? 😏</p>
+  <div style="margin-top:40px; font-size:1.2em;">
+    👉 Si quieres lo que te gusta a la izquierda, dale a la flecha
+  </div>
+  <div id="arrow" style="font-size:3em; cursor:pointer; margin-top:20px;">➡️</div>
+</div>
+
+<!-- Pantalla del segundo mensaje -->
+<div id="finalMessage" style="display:none; font-size:2em; text-align:center; color:white; text-shadow:2px 2px 6px black; animation: fadeIn 1s ease;">
+  <p>😏 Oye ya cálmate, ¿no?</p>
+  <p>✋ Deja lo comunista...</p>
+  <p>👉 Si quieres algo, me lo dices de frente y lo tienes, guarra, que al parecer te quieres alimentar 💥</p>
+</div>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+  }
+</style>
+
+<script>
+  const title = document.getElementById("title");
+  const secret = document.getElementById("secret");
+  const finalMessage = document.getElementById("finalMessage");
+  const arrow = document.getElementById("arrow");
+
+  // Zonas invisibles en el título
+  title.style.position = "relative";
+
+  const leftZone = document.createElement("div");
+  leftZone.style.position = "absolute";
+  leftZone.style.left = "0";
+  leftZone.style.top = "0";
+  leftZone.style.width = "50%";
+  leftZone.style.height = "100%";
+  leftZone.style.cursor = "pointer";
+  leftZone.style.background = "transparent";
+
+  const rightZone = document.createElement("div");
+  rightZone.style.position = "absolute";
+  rightZone.style.right = "0";
+  rightZone.style.top = "0";
+  rightZone.style.width = "50%";
+  rightZone.style.height = "100%";
+  rightZone.style.cursor = "pointer";
+  rightZone.style.background = "transparent";
+
+  title.appendChild(leftZone);
+  title.appendChild(rightZone);
+
+  // Click secreto: izquierda
+  leftZone.addEventListener("click", () => {
+    document.getElementById("game").style.display = "none";
+    secret.style.display = "block";
+  });
+
+  // Click flecha
+  arrow.addEventListener("click", () => {
+    secret.style.display = "none";
+    finalMessage.style.display = "block";
+  });
+
+  // La derecha puede tener otro easter egg si quieres
+  rightZone.addEventListener("click", () => {
+    alert("👉 Con que la derecha, Vamos que sabemos que escogiste primero la izquierda anda que no me vengas de santa que aqui solo hay globos 😏");
+  });
+</script>
 
   <!-- Segundo minijuego: escoger regalo -->
   <div id="choice" style="display:none;">
@@ -240,4 +311,5 @@
   </script>
 </body>
 </html>
+
 
